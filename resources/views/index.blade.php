@@ -16,11 +16,11 @@
                 </td>
             </tr>
             <tr>
-                @foreach ($id as $id)
+                @foreach ($children as $child)
                     <td>
                         <div class="index_name">
                             <h1 class="name">
-                                <a href="{{ url('show/' . $id->id) }}"> {{ $id->name }}</a>
+                                <a href="{{ url('show/' . $child->id) }}"> {{ $child->name }}</a>
                             </h1>
                         </div>
                     </td>

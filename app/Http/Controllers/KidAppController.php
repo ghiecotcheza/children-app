@@ -13,16 +13,14 @@ class KidAppController extends Controller
 {
     public function index()
     {
-        $id = Child::get();
-        return view('index', ['id' => $id]);
+        $children = Child::get();
+        return view('index', ['children' => $children]);
     }
 
     public function show($id)
     {
-        $name = Child::find($id);
-        $data = Content::where('child_id', $id)->get();
-        // $image =Image::where ('content_id',$content_id)->get();        
-        return view('/show', ['name' => $name, 'data' => $data]);
+        $child = Child::find($id);
+        return view('/show', ['child' => $child]);
     }
 
     public function create()
@@ -33,15 +31,15 @@ class KidAppController extends Controller
     public function store(Request $request)
     {
         //$child_id = Child::find($id);
-        $data = Content::create([
-            
+        $content = Content::create([
+
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'date' => Carbon::parse($request->input('datetime')),
             'location' =>$request->input('location')
         ]);
 
-        dump($data);
+        dump($content);
         return redirect('/');
     }
 
