@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="create_form">
-        <form action="{{ url('/') }}" method="POST">
+        <form action="{{ url('/') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
                 <label>Title</label>
@@ -51,7 +51,7 @@
                                     <input type="file" name="fileToUpload">
                                 </div>
                             </div>
-                        </td>      
+                        </td>
                     </tr>
                 </table>
                 <div >

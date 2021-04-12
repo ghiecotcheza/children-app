@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\ContentType::factory(10)->create();
         $this->call([ContentTypesTableSeeder::class]);
+        $this->call([CountriesTableSeeder::class]);
     }
 
 }
