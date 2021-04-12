@@ -13,5 +13,4 @@ class Child extends Model
     {
         return $this->hasMany(Content::class);
     }
-    
 }
