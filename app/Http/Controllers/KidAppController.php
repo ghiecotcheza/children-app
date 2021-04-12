@@ -7,6 +7,7 @@ use App\Models\Child;
 use App\Models\Content;
 use App\Models\Image;
 use App\Models\User;
+use Carbon\Carbon;
 
 class KidAppController extends Controller
 {
@@ -31,14 +32,16 @@ class KidAppController extends Controller
 
     public function store(Request $request)
     {
+        //$child_id = Child::find($id);
         $data = Content::create([
+            
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'date' => $request->input('datetime'),
+            'date' => Carbon::parse($request->input('datetime')),
             'location' =>$request->input('location')
         ]);
 
-        dump(request())->all();
+        dump($data);
         return redirect('/');
     }
 

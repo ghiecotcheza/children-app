@@ -16,7 +16,7 @@ class CreateContentsTable extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('child_id')->constrained('children');
-            $table->string('type');
+            $table->foreignId('content_type_id')->constrained('content_types');
             $table->string('title');
             $table->longText('description');
             $table->dateTime('date');
