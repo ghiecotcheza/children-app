@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Child extends Model
+class ContentType extends Model
 {
     use HasFactory;
-
-    public function contents()
+    public function create()
     {
-        return $this->hasMany(Content::class);
+        
     }
-    
 }
