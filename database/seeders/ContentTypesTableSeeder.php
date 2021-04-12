@@ -2,29 +2,29 @@
 
 namespace Database\Seeders;
 
-use App\Models\Content as ModelsContent;
+use Models\Content;
+use App\Models\ContentType;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Models\Content;
+use App\Models\Content as ModelsContent;
 //use Models\ContentType;
 
 class ContentTypesTableSeeder extends Seeder
 {
-    protected $content_types = [
-        '1' => 'Artwork',
-        '2' => 'Anecdote'
+    protected $contentTypes = [
+        'Artwork',
+        'Anecdotes',
     ];
 
     public function run()
     {
-        foreach ($this->content_types as $type_id =>$type_name)
-        {
-            DB::create([
+        foreach ($this->contentTypes as $contentType) {
 
-                'id' => $type_id
+            ContentType::updateOrCreate([
+                'keyname' => Str::slug($contentType)
             ], [
-                'keyname' =>str_slug($type_name),
-                'name'   => $type_name
+                'name' => $contentType,
             ]);
         }
     }
