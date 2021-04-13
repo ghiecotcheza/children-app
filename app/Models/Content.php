@@ -13,11 +13,14 @@ class Content extends Model
 
     protected $fillable = ['title', 'description', 'date', 'location', 'type'];
 
-    //protected $dates = 'datetime';
 
-    public function content()
+    public function child()
     {
         return $this->belongsTo(Child::class);
     }
 
+    public function type()
+    {
+        return $this->belongsTo(ContentType::class);
+    }
 }

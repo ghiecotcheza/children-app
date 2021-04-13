@@ -1,6 +1,5 @@
 @extends('layout')
 
-
 @section('content')
     <div class="main_container">
         <div class="home">
@@ -10,26 +9,26 @@
         </div>
         <div class="name">
             <h1 class="name">
-                {{ $name->name }}
+                {{ $child->name }}
             </h1>
         </div>
         <div>
 
             <a href="{{ url('/create') }}">Add Artwork &rarr;</a>
         </div>
-        @foreach ($data as $data)
+        @foreach ($child->contents as $content)
             <table class="timeline">
                 <tr>
                     <th>
                         <div class="titles">
-                            {{ $data->title }}
+                            {{ $content->title }}
                         </div>
                     </th>
                 </tr>
                 <tr>
                     <td>
                         <div>
-                            {{ $data->description }}
+                            {{ $content->description }}
                         </div>
                     </td>
                 </tr>
