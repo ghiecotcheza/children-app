@@ -8,8 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class ContentType extends Model
 {
     use HasFactory;
-    public function create()
+
+    protected $fillable = [
+
+        'Artwork',
+        'Anecdote'
+    ];
+
+    
+    public function contents()
     {
-        
+        return $this->hasMany(Content::class);
     }
 }

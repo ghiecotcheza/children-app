@@ -12,8 +12,14 @@ div.index {
     margin: 60px;
 }
 
+div.name {
+    float: left;
+    margin: 5px 50px 8px 162px;
+    font-size: xx-large;
+}
+
 div.main_container {
-    margin: 50px 50px 30px 50px;
+    margin: 50px 150px 30px 150px;
     background-color: #cef0ec;
     border-radius: 5px;
 }
@@ -25,16 +31,38 @@ body {
 
 div.home {
     margin-left: 42px;
-    padding-top: 11px;
+    padding-top: 23px;
     padding-bottom: 10px;
     text-decoration: none;
     font-size: x-large;
 }
 
+a.add {
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none!important;
+}
+
+div.add {
+    float: right;
+    margin: 50px 70px 30px 50px;
+    background-color: #f2ffff;
+    border: groove;
+    height: 57px;
+    width: 631px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: x-large;
+    padding-top: 27px;
+}
+
 table.timeline {
     font-size: large;
-    margin-left: 40px;
     padding-top: 30px;
+    width: 1050px;
+    margin-left: 88px;
 }
 
 th,
@@ -138,4 +166,22 @@ img {
     height: 500px;
     border-radius: 10px;
     box-shadow: 6px 10px 18px #888888;
+}
+
+tr.title_row {
+    text-align: left;
+}
+
+td.edit_delete {
+    float: right;
+    border: solid;
+    border-left: none;
+    height: 100px;
+}
+
+td.description {
+    border: solid;
+    height: 100px;
+    width: 850px;
+    border-right: none;
 }

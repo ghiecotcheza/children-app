@@ -1,13 +1,14 @@
-@extends('layout')
+@extends('child.layout')
 
 
 @section('content')
-    <div class="create_form">
+    <div class="create_form">  
         <form action="{{ url('/') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
                 <label>Title</label>
                 <div class="form">
+                    <input type="hidden" name="child_id" value="{{ $child->id}}">
                     <input class="title" type="text" name="title" placeholder="Title...">
                 </div>
             </div>
@@ -38,9 +39,10 @@
                         </td>
                         <td>
                             <div class="category_select">
-                                <select name="category">
-                                    <option value="artwork">Artwork</option>
-                                    <option value="anecdote">Anecdote</option>
+                                <select name="content_type_id">
+                                    @foreach ($content_types as $content_type)
+                                        <option value="{{ $content_type->id}}">{{ $content_type->name }}</option>     
+                                    @endforeach
                                 </select>
                             </div>
                         </td>

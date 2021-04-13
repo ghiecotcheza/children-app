@@ -7,14 +7,13 @@ use App\Models\ContentType;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Content as ModelsContent;
-//use Models\ContentType;
+
 
 class ContentTypesTableSeeder extends Seeder
 {
     protected $contentTypes = [
         'Artwork',
-        'Anecdotes',
+        'Anecdote',
     ];
 
     public function run()

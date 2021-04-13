@@ -11,8 +11,7 @@ class Content extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['title', 'description', 'date', 'location', 'type'];
-
+    protected $fillable = ['child_id', 'title', 'description', 'date', 'location', 'content_type_id'];
 
     public function child()
     {
