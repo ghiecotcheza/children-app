@@ -16,11 +16,14 @@ use App\Http\Controllers\KidAppController;
 
 Route::get('/', [KidAppController::class, 'index']);
 
-Route::post('/', [KidAppController::class, 'store']);
+Route::post('/', [KidAppController::class, 'store']);  
 
-Route::get('/show/{id}', [KidAppController::class, 'show']);
+Route::get('/child/show/{id}', [KidAppController::class, 'show']);
 
-Route::get('/create', [KidAppController::class, 'create']);
+Route::post('child/edit/{id}', [KidAppController::class, 'edit']);
+
+Route::get('child/create/{id}', [KidAppController::class, 'create']);
+
 
 
 
