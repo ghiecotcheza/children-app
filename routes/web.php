@@ -16,21 +16,26 @@ use App\Http\Controllers\KidAppController;
 
 Route::get('/', [KidAppController::class, 'index']);
 
-Route::post('/', [KidAppController::class, 'store']);  
+Route::post('/child/create/{id}', [KidAppController::class, 'store']);  
 
 Route::get('/child/show/{id}', [KidAppController::class, 'show']);
 
-Route::post('child/edit/{id}', [KidAppController::class, 'edit']);
+Route::get('child/edit/{id}', [KidAppController::class, 'edit']);
+
+Route::post('/child/edit/{id}', [KidAppController::class, 'edit']);
+
+Route::post('/child/update/{id}', [KidAppController::class, 'update']);
 
 Route::get('child/create/{id}', [KidAppController::class, 'create']);
+
+Route::get('/child/delete/{id}', [KidAppController::class, 'destroy']);
 
 
 
 
 Route::get('/test', function(){
 
-    $id = App\Models\Child::get('id');
-
-    dd($id->toArray());
-
+    $contents = App\Models\Content::first();
+  
+    ddd($contents);
 });

@@ -185,3 +185,7 @@ td.description {
     width: 850px;
     border-right: none;
 }
+
+tbody.table_row {
+    text-align: left;
+}

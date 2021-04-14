@@ -3,13 +3,13 @@
 
 @section('content')
     <div class="create_form">  
-        <form action="{{ url('/') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/child/create/' . $child->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
                 <label>Title</label>
                 <div class="form">
                     <input type="hidden" name="child_id" value="{{ $child->id}}">
-                    <input class="title" type="text" name="title" placeholder="Title...">
+                    <input class="title" type="text"  name="title" placeholder="Title...">
                 </div>
             </div>
             <div>
@@ -33,7 +33,7 @@
                             <div>
                                 <label>Location</label>
                                 <div>
-                                    <input class="location" type="text" name="location" placeholder="Location...">
+                                    <input class="location" type="text"  name="location" placeholder="Location...">
                                 </div>
                             </div>
                         </td>
