@@ -26,6 +26,8 @@
                             {{ $content->title }}
                         </div>
                     </th>
+                    <th style="width:200px;">&nbsp;</th>
+                    <th>&nbsp;</th>
                 </tr>
                 <tr>
                     <td class="description">
@@ -33,6 +35,7 @@
                             {{ $content->description }}
                         </div>
                     </td>
+                    <td><img style="max-width:200px;max-height:100px;" src="{{ $content->image }}"></td>
                     <td class="edit_delete">
                         <div>
                             <p>

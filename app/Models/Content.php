@@ -22,4 +22,9 @@ class Content extends Model
     {
         return $this->belongsTo(ContentType::class);
     }
+
+    public function getImageAttribute()
+    {
+        return asset('storage/childs/' . $this->child_id . '/contents/' . $this->id . '/image.jpg');
+    }
 }
