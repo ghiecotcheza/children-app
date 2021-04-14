@@ -21,9 +21,8 @@ class KidAppController extends Controller
     public function show($id)
     {
         $child = Child::find($id);
-        
-        $content = Content::get();
-        return view('child/show', ['child' => $child, 'content'=>$content]);
+    
+        return view('child/show', ['child' => $child]);
     }
 
     public function create($id)
@@ -35,36 +34,42 @@ class KidAppController extends Controller
 
     public function store(Request $request)
     {     
-        $content = Content::create([
-          
+        $content = Content::create([      
         
             'child_id'=>$request->input('child_id'),
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'date' => Carbon::parse($request->input('datetime')),
+            'date'=>$request->input('date'),
             'location' =>$request->input('location'),
             'content_type_id'=>$request->input('content_type_id')  
         ]);
-       
-        
-         
-        return redirect('/');
+
+        return redirect('/child/show/' . $request->input('child_id'));
     }
 
     public function edit($id)
-    {
-        // $content = Content::find($id);
-        // return view('child/edit',['content'=>$content]);
+    { 
+        $content_row = Content::find($id);
+        $content_types = ContentType::get();
+        return view('child/edit', ['content_row'=>$content_row, 'content_types'=>$content_types]);
     }
 
-    public function update()
-    {
+    public function update(Request $request, $id)
+    {       
+            $content = Content::where('id', $id)->update([
+                'title'=>$request->input('title'),
+                'description' =>$request->input('description'),
+                'date' =>$request->input('date'),
+                'location'=>$request->input('location'),
+                'content_type_id'=>$request->input('content_type_id') 
+            ]);
+            return redirect('/child/show/'.$request->input('child_id'));
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-       
-    //     $content ->delete();
-    //     return redirect()->back();
+       $content = Content::findOrFail($id)->delete(); 
+     
+        return redirect()->back();
      }
 }

@@ -2,21 +2,21 @@
 
 @section('content')
 <div class="edit">  
-    <form action="{{ url('/') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        {{ method_field('PUT') }}
+    <form action="{{ url('/child/update/'. $content_row->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf     
         <div class="title">
             <label>Title</label>
-            <div class="form">
-                <input type="hidden" name="child_id" value="{{ $child->id}}">
-                <input class="title" type="text" value="" name="title" placeholder="Title...">
+            <div class="form">  
+                <input type="hidden" name="id" value="{{ $content_row->id }}">
+                <input type="hidden" name="child_id" value="{{ $content_row->child_id}}">              
+                <input class="title" type="text" value="{{ $content_row->title }}" name="title" placeholder="Title...">
             </div>
         </div>
         <div>
-            <label>Description</label>
+            <label>Description</label> 
             <div class="form">
-                <textarea type="textarea" name="description" placeholder="Description..."></textarea>
-            </div>
+                <textarea type="textarea" name="description"  placeholder="Description...">{{ $content_row->description }}</textarea>
+            </div>          
         </div>
         <div>
             <table class="create_form">
@@ -25,7 +25,7 @@
                         <div>
                             <label>Date</label>
                             <div>
-                                <input class="date" type="date" name="date" value="YYYY/MM/DD">
+                                <input class="date" type="date" name="date" value="YYYMMDD" >
                             </div>
                         </div>
                     </td>
@@ -33,7 +33,7 @@
                         <div>
                             <label>Location</label>
                             <div>
-                                <input class="location" type="text" name="location" placeholder="Location...">
+                                <input class="location" type="text" value="{{ $content_row->location }}" name="location" placeholder="Location...">
                             </div>
                         </div>
                     </td>
@@ -57,7 +57,7 @@
                 </tr>
             </table>
             <div >
-                <button class="button_submit" type="submit">Submit</button>
+                <button class="button_submit" type="submit">Update</button>
             </div>
         </div>
     </form>

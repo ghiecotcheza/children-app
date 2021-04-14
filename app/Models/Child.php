@@ -11,6 +11,7 @@ class Child extends Model
 
     public function contents()
     {
-        return $this->hasMany(Content::class);
+        return $this->hasMany(Content::class)->orderBy('updated_at','desc');
+
     }
 }
