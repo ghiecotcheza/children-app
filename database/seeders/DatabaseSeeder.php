@@ -9,6 +9,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([ContentTypesTableSeeder::class]); 
+        $this->call([ChildrenTableSeeder::class]);
     }
 
 }

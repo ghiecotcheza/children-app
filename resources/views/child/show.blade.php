@@ -1,4 +1,4 @@
-@extends('child.layout')
+@extends('layout.app')
 
 @section('content')
     <div class="main_container">
@@ -34,12 +34,11 @@
                         <div>
                             {{ $content->description }}
                         </div>
-                    </td>
                     <td><img style="max-width:200px;max-height:100px;" src="{{ $content->image }}"></td>
                     <td class="edit_delete">
                         <div>
                             <p>
-                                <a href="{{ url('child/edit/' . $content->id) }}">Edit</a>
+                                <a href="{{ url('child/edit/artwork/anecdote/' . $content->id) }}">Edit</a>
                             </p>
                             <p>
                                 <a href="{{ url('child/delete/' . $content->id) }}">Delete</a>

@@ -1,8 +1,12 @@
-@extends('child.layout')
+@extends('layout.app')
 
 
 @section('content')
     <div class="index">
+        <div class="nav_link">
+            <a class="login" href="">Login</a>
+            <a class="register" href="/user/register">Register</a>
+        </div>
         <table>
             <tr>
                 <td>

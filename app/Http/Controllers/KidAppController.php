@@ -10,9 +10,33 @@ use App\Models\Content;
 use App\Models\ContentType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Validator;
+use Illuminate\Support\Facades\Crypt;
 
 class KidAppController extends Controller
-{
+{ 
+    public function register()
+    { 
+       
+        return view('user/register');
+    }
+
+    public function store_register(Request $request)
+    {
+        $user = User::create([
+            'name'=> $request->input('name'),
+            'email' => $request->input('email'),
+            'password' =>Crypt::encrypt($request->input('password'))
+            
+        ]);
+            return redirect('user/login');
+    }
+
+    public function login()
+    {
+        return view('user/login');
+    }
+
     public function index()
     {
         $children = Child::get();
@@ -54,7 +78,7 @@ class KidAppController extends Controller
             Storage::makeDirectory($directory);
             $file->storeAs($directory, 'image.jpg');
         }
-
+     
         return redirect('/child/show/' . $request->input('child_id'));
     }
 
@@ -83,4 +107,13 @@ class KidAppController extends Controller
 
         return redirect()->back();
      }
+
+
+
+    //  public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    
 }
+
