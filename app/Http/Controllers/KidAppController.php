@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Child;
-use App\Models\Content;
-use App\Models\Image;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Child;
+use App\Models\Image;
+use App\Models\Content;
+use App\Models\ContentType;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class KidAppController extends Controller
 {
@@ -20,38 +22,65 @@ class KidAppController extends Controller
     public function show($id)
     {
         $child = Child::find($id);
-        return view('/show', ['child' => $child]);
+
+        return view('child/show', ['child' => $child]);
     }
 
-    public function create()
+    public function create($id)
     {
-        return view('create');
+        $child =Child::find($id);
+        $content_types = ContentType::get();
+        return view('child/create', ['child'=>$child, 'content_types'=>$content_types]);
     }
 
     public function store(Request $request)
     {
-        //$child_id = Child::find($id);
-        $content = Content::create([
-
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'date' => Carbon::parse($request->input('datetime')),
-            'location' =>$request->input('location')
+        $request->validate([
+            'date' => 'required|date'
         ]);
 
-        dump($content);
-        return redirect('/');
+        $content = Content::create([
+            'child_id'=> $request->input('child_id'),
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'date'=> $request->input('date'),
+            'location' => $request->input('location'),
+            'content_type_id'=> $request->input('content_type_id')
+        ]);
+
+        if ($request->hasFile('fileToUpload')) {
+            $file = $request->file('fileToUpload');
+            $directory = 'childs/' . $request->child_id . '/contents/' . $content->id;
+            Storage::makeDirectory($directory);
+            $file->storeAs($directory, 'image.jpg');
+        }
+
+        return redirect('/child/show/' . $request->input('child_id'));
     }
 
-    public function edit()
+    public function edit($id)
     {
+        $content_row = Content::find($id);
+        $content_types = ContentType::get();
+        return view('child/edit', ['content_row'=>$content_row, 'content_types'=>$content_types]);
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
+            $content = Content::where('id', $id)->update([
+                'title'=>$request->input('title'),
+                'description' =>$request->input('description'),
+                'date' =>$request->input('date'),
+                'location'=>$request->input('location'),
+                'content_type_id'=>$request->input('content_type_id')
+            ]);
+            return redirect('/child/show/'.$request->input('child_id'));
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-    }
+       $content = Content::findOrFail($id)->delete();
+
+        return redirect()->back();
+     }
 }

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('child.layout')
 
 
 @section('content')
@@ -20,7 +20,7 @@
                     <td>
                         <div class="index_name">
                             <h1 class="name">
-                                <a href="{{ url('show/' . $child->id) }}"> {{ $child->name }}</a>
+                                <a href="{{ url('child/show/' . $child->id) }}"> {{ $child->name }}</a>
                             </h1>
                         </div>
                     </td>

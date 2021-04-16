@@ -11,8 +11,7 @@ class Content extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['title', 'description', 'date', 'location', 'type'];
-
+    protected $fillable = ['child_id', 'title', 'description', 'date', 'location', 'content_type_id'];
 
     public function child()
     {
@@ -22,5 +21,10 @@ class Content extends Model
     public function type()
     {
         return $this->belongsTo(ContentType::class);
+    }
+
+    public function getImageAttribute()
+    {
+        return asset('storage/childs/' . $this->child_id . '/contents/' . $this->id . '/image.jpg');
     }
 }
